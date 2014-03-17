@@ -1,0 +1,152 @@
+CR rdv Synopsx
+====
+
+Présents
+------
+
+
+Odj
+------
+- Obj du projet
+- Identification des mutualisations
+- mode de collaboration
+- Visite à Constance, présentation usages et réunion technique au besoin (achat de dev.)
+
+Projet des Guides de Paris probablement utilisation de BaseX pour publier les sources du projet
+De même pour l'ANR Ampère
+
+HumaNum, ok pour l'utilisation de BaseX pour la production pour les utilisateurs qui le demandent.
+
+
+Objet du projet
+------
+Objectif principal publication de corpus TEI
+Discussion que n'ont peut être pas suffisamment eu en interne
+Publication TEI pas trop de pb. Mais clarifier les fonctionnalités pour l'interrogation des corpus, les services que pourrait construire autour.
+Pour le moment, pas loin de pouvoir fabriquer un entrepôt OAI-PMH pour chaque projet, lorsque les métadonnées bien structurées.
+
+Discuter en terme d'objectif les jalons que se donnent pour finaliser des versions, les distribuer. Pour le moment évolution constante, sans formalisation (critstalisation).
+
+Facilitation de la publication de source
+Mutualisation, ENS perspective de faire en sorte que tous les différents projets puissent partager ce que peuvent partager. 
+- fonctionnalités spécifiques pour l'exploitation des corpus
+- structure générale du site
+- entrepôts OAI-PMH
+
+Backoffice avec formulaires de configuration de projet et gestion des sources
+Mise à jour de documents TEI, versionning : accompagner phase de transcription, édition et de validation des sources. Notamment car connecté avec Oxygen.
+
+Se mettre d'accord sur ce que l'on veut faire.
+Formaliser les modalités de la collaboration. Se mettre d'accord sur la manière de travailler en commun. Plus attirés par l'élaboration d'un cahier des charges.
+
+Mode de collaboration logiciel libre, s'épargner cadre administratif lourd.
+
+Sources sur GitHub
+Mode de déploiement, revenus de l'idée d'une seule base. Pas très compliqué en fait de disposer d'autant de BaseX que de projet. Facilitation pour gérer le problème des versions (suivi dans le développement des changements de versions et pas forcément de mise en production).
+
+Travailler à un flux de travail pour webApp
+Proposer un workflow avec mise à jour des modules, sous-modules et BaseX par git.
+Libérer l'adresse racine
+
+Organiser le code
+
+Versionner les sources
+Possibilité de gérer versionning directement avec BaseX
+Sinon versionner les sources avec Git et gérer le versionning par l'intermédiaire de l'API Git.
+
+Déployement d'application
+Protéger la base de donnée en la plaçant derrière un proxy.
+Éviter que les requêtes soient transmissibles par URL (comme avec SQL).
+Travailler avec un proxy ?
+Désactiver le passage de requête par l'URI (débrancher interface REST pour les fonctions de la base) ?
+Éviter que des gens injectent des données en utilisant nos méthodes RESTXQ.
+
+Gestion des utilisateurs du backoffice
+Authentification OpenID
+Utilise-t-on le système utilisateur de BaseX pour gérer les utilisateurs sur la base.
+Évaluer l'intérêt (ou pas) d'utiliser le syst utilisateur de BaseX.
+
+Travail en cours sur le cahier des charges.
+Maquette de backoffice.
+
+Apport bibliographique
+Montesquieu ne gère que des items bibliographiques.
+Du Marc, de la TEI mais l'édition d'un catalogue dont le contenu des entrées bibliographiques.
+Auraient un projet de base de données biblio à convertir
+Travailler en fonction de la manière dont la base est indexée. Mieux vaut directement désigner les éléments tels qu'ils sont indexés, plutôt qu'en isolant des parties du corpus = tirer parti des index.
+
+Lors de la création d'une base de données, bien penser
+chop=false
+Car par défaut virent les espaces blancs entre les balises.
+
+BaseX demander si peut récupérer le XQuery Info
+
+Bonnes pratiques
+XQdoc
+Dans les chemins, premier élément le nom du projet. C'était pertinent lorsque travaillait avec plusieurs projets. Dès lors que plus qu'un projet par instance de BaseX peut-être plus pertinent.
+
+2e patrie, le data type
+dans un projet peut avoir plusieurs types de documents
+manuscrit, edition, publication, transcription
+
+Value
+Dessanti/transcription/133
+Id de la ressource
+
+Option, car pour une même ressource peut avoir plusieurs options de visualisation
+Nuage, liste, carte, tableau, etc.
+
+Pour accéder à une partie de fichier
+nom de balise et id
+
+tiret bas dans les noms de fonction 
+essayent appeler les fonctions par le div html qu'elles sont censées produire
+
+
+Possibilité de ne pas lier à des URI les fonctions
+Une structure hiérarchique dans les différents modules
+Ahn-common qui dépend de synopsx
+Notion d'héritage
+Les projets héritent de ahn_commons qui lui-même hérite de synopsx
+Du coup, si veut imaginer pouvoir proposer une solution clef en main pour ceux qui ne voudraient pas avoir à tout redéfinir, créer un module clef en main.
+
+Modulariser au maximum en détachant les fonctions des uri.
+En revanche, pas ce que l'on a fait pour OAI : projet/oai
+--> détermine
+
+La logique de l'application définie par les URI
+Est-il nécessaire de dissocier ? Jusqu'où est-ce intéressant de dissocier ?
+
+Pas une fonction qui créée les différentes brides et les rassemble.
+Un mécanisme récurcif. 
+L'URL qui produit le HTML le plus externe
+Au fur et à mesure que descend dans la construction de l'arbre précise la construction
+Savoir si Ok pour la négociation de contenu
+
+Avoir les fonctions XQuery qui calculent ce qui nous intéresse et utiliser XSLT pour le formatage. Pour le moment pas systématisé, mais souvent plus efficace.
+Mieux séparer la mise en forme et la logique de l'application.
+
+Question de l'internationalisation
+Ne pas écrire du texte un peu partout. Peut faire appel à un fichier de configuration pour construire la sortie.
+
+fonction map qui permet de balader les portions d'URL, sous forme de clef-valeur.
+
+
+Git
+Bibliographie
+Finalisation specs backoffice
+Fichiers externe config XSLT (séparation mise)
+Mettre les notes en ligne
+
+Mail user security
+
+
+
+
+
+
+
+
+
+
+
